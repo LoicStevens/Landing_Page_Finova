@@ -80,7 +80,7 @@ const isValidWhatsApp = (phone: string) => {
       <div className="relative z-10 max-w-xl w-full bg-white/5 backdrop-blur-xl p-10 rounded-2xl border border-white/10 shadow-xl">
 
         <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
-          Get the <span className="text-[#4EF2FF]">FINOVA CAPITAL ALGO</span> Trading Guide
+          Get the <span className="text-[#4EF2FF]">FINOVA CAPITAL </span> Algo Trading Guide
         </h1>
 
         <p className="text-gray-300 text-center mt-3">
