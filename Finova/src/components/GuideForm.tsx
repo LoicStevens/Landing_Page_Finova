@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { useState } from "react";
-import { User, Mail, Phone, Loader2 } from "lucide-react";
+import { User, Mail,  Loader2 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function GuideForm() {
   const navigate = useNavigate();
@@ -134,11 +135,11 @@ const isValidWhatsApp = (phone: string) => {
 
           {/* WHATSAPP */}
           <div className="relative">
-            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4EF2FF]/70" size={18} />
+            <FaWhatsapp className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4EF2FF]/70" size={18} />
             <input
               name="whatsapp"
               type="text"
-              placeholder="+237 6XX XXX XXX"
+              placeholder="+XXX XXX XXX XXX"
 
               required
               className="
