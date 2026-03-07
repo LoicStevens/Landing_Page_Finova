@@ -81,7 +81,8 @@ const isValidWhatsApp = (phone: string) => {
     navigate("/success");
   } catch (error: any) {
     console.error("🔥 ERROR:", error);
-    alert("Something went wrong. Please try again.");
+    const msg = error?.text ?? error?.message ?? error?.code ?? JSON.stringify(error);
+    alert(`Something went wrong: ${msg}`);
     setLoading(false);
   }
 };
