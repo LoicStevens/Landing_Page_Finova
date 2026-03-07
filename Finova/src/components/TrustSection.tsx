@@ -8,7 +8,7 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="relative py-24 bg-black overflow-hidden">
+    <section className="relative py-14 md:py-24 bg-black overflow-hidden">
 
       {/* Holographic glow background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#4EF2FF]/5 to-transparent blur-3xl opacity-40"></div>
@@ -21,7 +21,7 @@ export default function TrustSection() {
         </h2>
 
         {/* LOGOS */}
-        <div className="grid grid-cols-2 md:grid-cols-5 items-center gap-10 md:gap-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center gap-8 md:gap-16">
           {partners.map((p, i) => (
             <div
               key={i}

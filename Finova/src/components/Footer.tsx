@@ -1,15 +1,15 @@
 export default function Footer() {
   return (
-    <footer className="relative bg-black border-t border-white/10 py-20">
+    <footer className="relative bg-black border-t border-white/10 py-12 md:py-20">
 
       {/* GLOW TOP LINE */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[2px]
         bg-gradient-to-r from-transparent via-[#4EF2FF] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
 
         {/* LOGO + TEXT */}
-        <div>
+        <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-3 mb-4">
             <img src="/logo.png" alt="logo" className="h-10" />
             <div className="flex flex-col">
@@ -54,7 +54,7 @@ export default function Footer() {
       </div>
 
       {/* COPYRIGHT */}
-      <div className="text-center text-gray-500 text-xs mt-16">
+      <div className="text-center text-gray-500 text-xs mt-10 md:mt-16 px-6">
         © {new Date().getFullYear()} FINOVA CAPITAL — All Rights Reserved.
       </div>
     </footer>

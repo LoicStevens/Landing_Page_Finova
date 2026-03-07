@@ -25,7 +25,7 @@ export default function OurSolutions() {
   ];
 
   return (
-    <section className="relative py-28 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-28 bg-black overflow-hidden">
 
       {/* Background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#4EF2FF]/5 to-black opacity-40 blur-3xl"></div>
@@ -37,16 +37,16 @@ export default function OurSolutions() {
 
         {/* Title */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <h2 className="text-3xl md:text-5xl font-bold text-white">
             Our <span className="text-[#4EF2FF]">Solutions</span>
           </h2>
-          <p className="text-gray-400 text-xl mt-4 max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base md:text-xl mt-4 max-w-2xl mx-auto">
             Institutional-grade tools crafted for traders, funds, and financial innovators.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {solutions.map((s, i) => (
             <div
               key={i}

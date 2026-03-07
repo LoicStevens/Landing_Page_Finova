@@ -74,12 +74,12 @@ const isValidWhatsApp = (phone: string) => {
 
 
   return (
-    <section className="min-h-screen bg-black flex items-center justify-center px-6 py-20">
+    <section className="min-h-screen bg-black flex items-center justify-center px-4 sm:px-6 py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(78,242,255,0.15),transparent_70%)] blur-3xl" />
 
-      <div className="relative z-10 max-w-xl w-full bg-white/5 backdrop-blur-xl p-10 rounded-2xl border border-white/10 shadow-xl">
+      <div className="relative z-10 max-w-xl w-full bg-white/5 backdrop-blur-xl p-6 sm:p-10 rounded-2xl border border-white/10 shadow-xl">
 
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
           Get the <span className="text-[#4EF2FF]">FINOVA CAPITAL </span> Algo Trading Guide
         </h1>
 

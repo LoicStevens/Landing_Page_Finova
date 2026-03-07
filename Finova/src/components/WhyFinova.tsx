@@ -25,7 +25,7 @@ export default function WhyFinova() {
   ];
 
   return (
-    <section className="relative py-28 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-28 bg-black overflow-hidden">
 
       {/* Holographic glow background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#4EF2FF]/5 via-transparent to-[#4EF2FF]/5 opacity-40 blur-3xl"></div>
@@ -34,16 +34,16 @@ export default function WhyFinova() {
         
         {/* Section title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <h2 className="text-3xl md:text-5xl font-bold text-white">
             Why <span className="text-[#4EF2FF]">Finova?</span>
           </h2>
-          <p className="text-gray-400 text-xl mt-4">
+          <p className="text-gray-400 text-base md:text-xl mt-4">
             A new standard for quantitative finance & autonomous trading.
           </p>
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {benefits.map((b, i) => (
             <div
               key={i}

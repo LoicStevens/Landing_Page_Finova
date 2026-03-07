@@ -1,4 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+const navItems = [
+  { label: "Hedge Fund", path: "/hedge-fund" },
+  { label: "Trading Tools", path: "/trading-tools" },
+  { label: "Academy", path: "/academy" },
+  { label: "Market Insights", path: "/market-insights" },
+  { label: "Consulting", path: "/consulting" },
+  { label: "About", path: "/about" },
+  { label: "Contact", path: "/contact" },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -8,7 +19,7 @@ export default function Navbar() {
       <nav className="relative mx-auto max-w-7xl px-6 py-4 flex justify-between items-center">
 
         {/* LOGO + TEXTE */}
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img
             src="/logo.png"
             alt="Finova Logo"
@@ -22,65 +33,49 @@ export default function Navbar() {
               CAPITAL
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* DESKTOP NAV */}
         <ul className="hidden md:flex gap-8 text-white/90 text-sm font-medium relative">
-          {["Hedge Fund", "Trading Tools", "Academy", "Market Insights", "Consulting", "About", "Contact"].map(item => (
-            <li
-              key={item}
-              className="cursor-pointer hover:text-[#4EF2FF] transition"
-            >
-              {item}
+          {navItems.map(item => (
+            <li key={item.label}>
+              <Link
+                to={item.path}
+                className="cursor-pointer hover:text-[#4EF2FF] transition"
+              >
+                {item.label}
+              </Link>
             </li>
           ))}
 
           {/* BARRE LUMINEUSE */}
-          <div className="absolute left-1/2 -bottom-8 -translate-x-1/2">
-            <div
-              className="
-                w-[620px] h-[3px]
-                bg-gradient-to-r
-                from-transparent
-                via-[#4EF2FF]
-                to-transparent
-                opacity-95
-              "
-            />
-            <div
-              className="
-                w-[620px] h-[10px]
-                bg-gradient-to-r
-                from-transparent
-                via-[#4EF2FF]/40
-                to-transparent
-                blur-[8px]
-                -mt-2
-              "
-            />
+          <div className="absolute left-1/2 -bottom-8 -translate-x-1/2 w-[min(620px,100vw)]">
+            <div className="w-full h-[3px] bg-gradient-to-r from-transparent via-[#4EF2FF] to-transparent opacity-95" />
+            <div className="w-full h-[10px] bg-gradient-to-r from-transparent via-[#4EF2FF]/40 to-transparent blur-[8px] -mt-2" />
           </div>
         </ul>
 
         {/* DESKTOP BUTTONS */}
         <div className="hidden md:flex items-center gap-4">
-          <button className="text-white/90 hover:text-[#4EF2FF] transition">
+          <Link to="/signin" className="text-white/90 hover:text-[#4EF2FF] transition">
             Log in
-          </button>
-          <button
+          </Link>
+          <Link
+            to="/register"
             className="
-              bg-gradient-to-r 
-              from-[#3EE8FF] 
-              to-[#0EA5E9] 
-              text-black 
-              px-5 py-2 
-              rounded-full 
-              font-semibold 
-              hover:opacity-90 
+              bg-gradient-to-r
+              from-[#3EE8FF]
+              to-[#0EA5E9]
+              text-black
+              px-5 py-2
+              rounded-full
+              font-semibold
+              hover:opacity-90
               transition
             "
           >
             Sign up
-          </button>
+          </Link>
         </div>
 
         {/* HAMBURGER BUTTON (Mobile) */}
@@ -105,34 +100,43 @@ export default function Navbar() {
         `}
       >
         <ul className="flex flex-col items-center gap-6 text-white/90 text-lg font-medium">
-          {["Hedge Fund", "Trading Tools", "Academy", "Market Insights", "Consulting", "About", "Contact"].map(item => (
-            <li
-              key={item}
-              className="cursor-pointer hover:text-[#4EF2FF] transition"
-            >
-              {item}
+          {navItems.map(item => (
+            <li key={item.label}>
+              <Link
+                to={item.path}
+                className="cursor-pointer hover:text-[#4EF2FF] transition"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
             </li>
           ))}
 
           <div className="flex flex-col gap-4 mt-4">
-            <button className="text-white/90 hover:text-[#4EF2FF] transition text-center">
+            <Link
+              to="/signin"
+              className="text-white/90 hover:text-[#4EF2FF] transition text-center"
+              onClick={() => setOpen(false)}
+            >
               Log in
-            </button>
-            <button
+            </Link>
+            <Link
+              to="/register"
               className="
-                bg-gradient-to-r 
-                from-[#3EE8FF] 
-                to-[#0EA5E9] 
-                text-black 
-                px-6 py-2 
-                rounded-full 
-                font-semibold 
-                hover:opacity-90 
+                bg-gradient-to-r
+                from-[#3EE8FF]
+                to-[#0EA5E9]
+                text-black
+                px-6 py-2
+                rounded-full
+                font-semibold
+                hover:opacity-90
                 transition
               "
+              onClick={() => setOpen(false)}
             >
               Sign up
-            </button>
+            </Link>
           </div>
         </ul>
       </div>
