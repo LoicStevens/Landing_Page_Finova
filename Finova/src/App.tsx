@@ -8,6 +8,7 @@ import Register from "./pages/register";
 import ForgotPassword from "./pages/forgot-password";
 import ComingSoon from "./pages/ComingSoon";
 import Academy from "./pages/Academy";
+import TradingTools from "./pages/TradingTools";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/hedge-fund" element={<ComingSoon title="Hedge Fund" />} />
-        <Route path="/trading-tools" element={<ComingSoon title="Trading Tools" />} />
+        <Route path="/trading-tools" element={<TradingTools />} />
         <Route path="/academy" element={<Academy />} />
         <Route path="/market-insights" element={<ComingSoon title="Market Insights" />} />
         <Route path="/consulting" element={<ComingSoon title="Consulting" />} />
