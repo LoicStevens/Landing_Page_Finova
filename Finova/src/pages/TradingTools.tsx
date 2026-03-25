@@ -734,7 +734,7 @@ export default function TradingTools() {
                 <div className="mt-4 p-3 rounded-xl text-center"
                   style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
                   <p className="text-[#22c55e] text-sm font-semibold">
-                    Monthly rental <span className="text-white/60 font-normal">($69/month)</span> available at all tiers
+                    Monthly rental <span className="text-white/60 font-normal">($69/month)</span> available from 2nd tiers
                     <span className="text-white/40 font-normal"> · Does not affect milestone counter</span>
                   </p>
                 </div>
