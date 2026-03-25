@@ -674,13 +674,13 @@ export default function TradingTools() {
                     <Clock size={13} className="inline mr-1.5" />Launch Countdown
                   </div>
                   <div className="text-white font-semibold mb-6 text-base">LBS v2.4 goes live on March 30, 2026</div>
-                  <div className="flex items-center justify-center gap-3 md:gap-5">
+                  <div className="grid grid-cols-2 sm:flex items-center justify-center gap-4 sm:gap-5">
                     <DigitBlock value={countdown.days} label="Days" />
-                    <span className="text-[#C9A227] text-3xl font-black mb-4 opacity-60">:</span>
+                    <span className="hidden sm:block text-[#C9A227] text-3xl font-black mb-4 opacity-60">:</span>
                     <DigitBlock value={countdown.hours} label="Hours" />
-                    <span className="text-[#C9A227] text-3xl font-black mb-4 opacity-60">:</span>
+                    <span className="hidden sm:block text-[#C9A227] text-3xl font-black mb-4 opacity-60">:</span>
                     <DigitBlock value={countdown.minutes} label="Minutes" />
-                    <span className="text-[#C9A227] text-3xl font-black mb-4 opacity-60">:</span>
+                    <span className="hidden sm:block text-[#C9A227] text-3xl font-black mb-4 opacity-60">:</span>
                     <DigitBlock value={countdown.seconds} label="Seconds" />
                   </div>
                 </div>
