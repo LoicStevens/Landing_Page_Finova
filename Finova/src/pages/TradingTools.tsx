@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import {
   ExternalLink, TrendingUp, Shield, Zap, BarChart2,
   Bell, ChevronRight, Lock, Target, Clock,
-  Activity, AlertTriangle, CheckCircle2
+  Activity, AlertTriangle, CheckCircle2, Loader2
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../lib/firebase";
 
 // ── Scroll reveal hook ──────────────────────────────────────────────────────
 function useInView(threshold = 0.12) {
@@ -191,13 +194,45 @@ export default function TradingTools() {
   const lbsLaunch = new Date("2026-03-30T09:00:00Z");
   const countdown = useCountdown(lbsLaunch);
   const [notifyEmail, setNotifyEmail] = useState("");
-  const [notifyStatus, setNotifyStatus] = useState<"idle" | "success">("idle");
+  const [notifyStatus, setNotifyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleNotify = (e: React.FormEvent) => {
+  const handleNotify = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!notifyEmail) return;
-    setNotifyStatus("success");
-    setNotifyEmail("");
+    setNotifyStatus("loading");
+
+    const daysLeft = Math.max(
+      0,
+      Math.ceil((lbsLaunch.getTime() - Date.now()) / 86400000)
+    );
+
+    try {
+      // 1. Sauvegarder dans Firestore
+      await addDoc(collection(db, "lbs_waitlist"), {
+        email: notifyEmail.trim(),
+        createdAt: serverTimestamp(),
+      });
+
+      // 2. Envoyer l'email de confirmation via EmailJS
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_LBS_TEMPLATE_ID,
+        {
+          to_email: notifyEmail.trim(),
+          days_remaining: daysLeft,
+          launch_date: "March 30, 2026",
+          early_price: "$97",
+          spots_remaining: "15",
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      setNotifyStatus("success");
+      setNotifyEmail("");
+    } catch (err: any) {
+      console.error("LBS notify error:", err);
+      setNotifyStatus("error");
+    }
   };
 
   return (
@@ -367,7 +402,6 @@ export default function TradingTools() {
                   style={{ background: "rgba(201,162,39,0.08)", border: "1px solid rgba(201,162,39,0.3)", animation: "pulse-glow-gold 3s ease-in-out infinite" }}>
                   <img src="/kingsley-logo.png" alt="Kingsley EA" className="w-full h-full object-contain p-2"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-                  <span className="text-[#C9A227] font-black text-2xl hidden-on-img-load">K</span>
                 </div>
               </Reveal>
 
@@ -715,32 +749,43 @@ export default function TradingTools() {
                 <h4 className="font-bold text-white mb-1">Get notified at launch</h4>
                 <p className="text-white/50 text-sm mb-4">Lock in the Early Access price before spots disappear.</p>
                 {notifyStatus === "success" ? (
-                  <div className="flex items-center justify-center gap-2 text-[#22c55e] font-semibold">
-                    <CheckCircle2 size={18} /> You're on the list — we'll email you at launch!
+                  <div className="flex items-center justify-center gap-2 text-[#22c55e] font-semibold text-base">
+                    <CheckCircle2 size={20} /> You're on the list  check your inbox (Spam included)!
                   </div>
                 ) : (
-                  <form onSubmit={handleNotify} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                    <input
-                      type="email"
-                      value={notifyEmail}
-                      onChange={(e) => setNotifyEmail(e.target.value)}
-                      placeholder="your@email.com"
-                      required
-                      className="flex-1 px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none transition-all"
-                      style={{
-                        background: "rgba(255,255,255,0.05)",
-                        border: "1px solid rgba(78,242,255,0.25)",
-                      }}
-                      onFocus={(e) => { e.target.style.border = "1px solid rgba(78,242,255,0.6)"; e.target.style.boxShadow = "0 0 0 3px rgba(78,242,255,0.08)"; }}
-                      onBlur={(e) => { e.target.style.border = "1px solid rgba(78,242,255,0.25)"; e.target.style.boxShadow = "none"; }}
-                    />
-                    <button
-                      type="submit"
-                      className="px-6 py-3 rounded-xl font-bold text-sm text-black transition-all duration-200 hover:scale-105 hover:shadow-[0_0_25px_rgba(78,242,255,0.5)] active:scale-95"
-                      style={{ background: "linear-gradient(135deg, #4EF2FF, #0EA5E9)" }}>
-                      Notify Me
-                    </button>
-                  </form>
+                  <>
+                    <form onSubmit={handleNotify} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                      <input
+                        type="email"
+                        value={notifyEmail}
+                        onChange={(e) => setNotifyEmail(e.target.value)}
+                        placeholder="your@email.com"
+                        required
+                        disabled={notifyStatus === "loading"}
+                        className="flex-1 px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none transition-all disabled:opacity-50"
+                        style={{
+                          background: "rgba(255,255,255,0.05)",
+                          border: "1px solid rgba(78,242,255,0.25)",
+                        }}
+                        onFocus={(e) => { e.target.style.border = "1px solid rgba(78,242,255,0.6)"; e.target.style.boxShadow = "0 0 0 3px rgba(78,242,255,0.08)"; }}
+                        onBlur={(e) => { e.target.style.border = "1px solid rgba(78,242,255,0.25)"; e.target.style.boxShadow = "none"; }}
+                      />
+                      <button
+                        type="submit"
+                        disabled={notifyStatus === "loading"}
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-black transition-all duration-200 hover:scale-105 hover:shadow-[0_0_25px_rgba(78,242,255,0.5)] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        style={{ background: "linear-gradient(135deg, #4EF2FF, #0EA5E9)" }}>
+                        {notifyStatus === "loading" ? (
+                          <><Loader2 size={15} className="animate-spin" /> Sending…</>
+                        ) : "Notify Me"}
+                      </button>
+                    </form>
+                    {notifyStatus === "error" && (
+                      <p className="text-red-400 text-sm mt-2">
+                        Something went wrong — please try again.
+                      </p>
+                    )}
+                  </>
                 )}
               </div>
             </Reveal>

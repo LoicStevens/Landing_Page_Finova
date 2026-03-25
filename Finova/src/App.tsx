@@ -9,6 +9,7 @@ import ForgotPassword from "./pages/forgot-password";
 import ComingSoon from "./pages/ComingSoon";
 import Academy from "./pages/Academy";
 import TradingTools from "./pages/TradingTools";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="/market-insights" element={<ComingSoon title="Market Insights" />} />
         <Route path="/consulting" element={<ComingSoon title="Consulting" />} />
         <Route path="/about" element={<ComingSoon title="About" />} />
-        <Route path="/contact" element={<ComingSoon title="Contact" />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </div>

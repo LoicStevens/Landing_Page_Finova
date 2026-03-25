@@ -1,3 +1,18 @@
+import { Link } from "react-router-dom";
+import { FaFacebook, FaYoutube, FaInstagram, FaReddit, FaWhatsapp, FaTelegram } from "react-icons/fa";
+import { FaXTwitter, FaTiktok } from "react-icons/fa6";
+
+const SOCIALS = [
+  { icon: FaFacebook,  label: "Facebook",  href: "https://www.facebook.com/share/1A6oZeNShW/",                                                                              color: "#1877F2" },
+  { icon: FaYoutube,   label: "YouTube",   href: "https://youtube.com/@finocap-z9i?si=oT7L9gUG_BOidn9v",                                                                    color: "#FF0000" },
+  { icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/_finocap?igsh=bXo0MDE5MHhpcnhr",                                                               color: "#E1306C" },
+  { icon: FaXTwitter,  label: "X",         href: "https://x.com/FinoCap_?t=Iwx9ApcYDUH_tDMzGQUvYg&s=09",                                                                  color: "#ffffff" },
+  { icon: FaTelegram,  label: "Telegram",  href: "https://t.me/FinoCap",                                                                                                    color: "#26A5E4" },
+  { icon: FaReddit,    label: "Reddit",    href: "https://www.reddit.com/user/Main_Recover_1840/",                                                                          color: "#FF4500" },
+  { icon: FaTiktok,    label: "TikTok",    href: "https://tiktok.com/@_finocap",                                                                                            color: "#ffffff" },
+  { icon: FaWhatsapp,  label: "WhatsApp",  href: "https://wa.me/237698639717",                                                                                              color: "#25D366" },
+];
+
 export default function Footer() {
   return (
     <footer className="relative bg-black border-t border-white/10 py-12 md:py-20">
@@ -26,9 +41,8 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">Company</h4>
           <ul className="space-y-2 text-gray-400 text-sm">
-            <li className="hover:text-[#4EF2FF] cursor-pointer">About</li>
-            <li className="hover:text-[#4EF2FF] cursor-pointer">Contact</li>
-            <li className="hover:text-[#4EF2FF] cursor-pointer">Careers</li>
+            <li><Link to="/about"   className="hover:text-[#4EF2FF] transition-colors">About</Link></li>
+            <li><Link to="/contact" className="hover:text-[#4EF2FF] transition-colors">Contact</Link></li>
           </ul>
         </div>
 
@@ -36,20 +50,42 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-4">Legal</h4>
           <ul className="space-y-2 text-gray-400 text-sm">
-            <li className="hover:text-[#4EF2FF] cursor-pointer">Terms of Service</li>
-            <li className="hover:text-[#4EF2FF] cursor-pointer">Privacy Policy</li>
-            <li className="hover:text-[#4EF2FF] cursor-pointer">Disclaimer</li>
+            <li className="hover:text-[#4EF2FF] cursor-pointer transition-colors">Terms of Service</li>
+            <li className="hover:text-[#4EF2FF] cursor-pointer transition-colors">Privacy Policy</li>
+            <li className="hover:text-[#4EF2FF] cursor-pointer transition-colors">Disclaimer</li>
           </ul>
         </div>
 
         {/* SOCIAL MEDIA */}
         <div>
           <h4 className="text-white font-semibold mb-4">Follow Us</h4>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li className="hover:text-[#4EF2FF] cursor-pointer">Twitter</li>
-            <li className="hover:text-[#4EF2FF] cursor-pointer">LinkedIn</li>
-            <li className="hover:text-[#4EF2FF] cursor-pointer">YouTube</li>
-          </ul>
+          <div className="flex flex-wrap gap-3">
+            {SOCIALS.map(({ icon: Icon, label, href, color }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-110"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = `${color}22`;
+                  (e.currentTarget as HTMLElement).style.borderColor = `${color}66`;
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                }}
+              >
+                <Icon size={16} style={{ color }} />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
