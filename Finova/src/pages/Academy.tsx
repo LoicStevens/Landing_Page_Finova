@@ -112,7 +112,7 @@ const pillars = [
   {
     icon: TrendingUp,
     title: "Algorithmic Trading",
-    description: "Build, backtest and deploy automated trading strategies using Python and quantitative models.",
+    description: "Build, backtest and deploy automated trading strategies using MQL5 and quantitative models.",
     modules: ["Intro to Algo Trading", "Strategy Backtesting", "Live Deployment"],
     color: "from-[#4EF2FF]/20 to-transparent",
   },
@@ -154,10 +154,10 @@ const pillars = [
 ];
 
 const stats = [
-  { value: "2400+", label: "Students enrolled" },
-  { value: "48", label: "Courses & modules" },
-  { value: "320h+", label: "Hours of content" },
-  { value: "94%", label: "Satisfaction rate" },
+  { value: "4", label: "Programs in development" },
+  { value: "6", label: "Core learning pillars" },
+  { value: "Q2 2026", label: "Launch target" },
+  { value: "Active", label: "Built by active traders" },
 ];
 
 const levels = [
@@ -225,7 +225,7 @@ export default function Academy() {
             style={{ transitionDelay: "0ms" }}
           >
             <span className="inline-block text-[#4EF2FF] text-sm font-semibold tracking-[0.3em] uppercase mb-4 px-4 py-1.5 rounded-full border border-[#4EF2FF]/20 bg-[#4EF2FF]/5">
-              Finova Academy
+              FinoCap Academy
             </span>
           </div>
 

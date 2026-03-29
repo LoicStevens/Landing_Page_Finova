@@ -1,14 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import GuideForm from "./components/GuideForm";
-import SuccessPage from "./pages/SuccessPage";
 import Footer from "./components/Footer";
-import SignIn from "./pages/SignIn";
-import Register from "./pages/register";
-import ForgotPassword from "./pages/forgot-password";
-import ComingSoon from "./pages/ComingSoon";
-import Academy from "./pages/Academy";
+import Home from "./pages/Home";
+import Guide from "./pages/Guide";
+import GuideSuccess from "./pages/GuideSuccess";
 import TradingTools from "./pages/TradingTools";
+import Performance from "./pages/Performance";
+import Academy from "./pages/Academy";
+import MarketInsights from "./pages/MarketInsights";
+import Consulting from "./pages/Consulting";
+import About from "./pages/About";
 import Contact from "./pages/Contact";
 
 function App() {
@@ -16,18 +17,17 @@ function App() {
     <div className="overflow-x-hidden w-full">
       <Navbar />
       <Routes>
-        <Route path="/" element={<GuideForm />} />
-        <Route path="/success" element={<SuccessPage />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/hedge-fund" element={<ComingSoon title="Hedge Fund" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/guide" element={<Guide />} />
+        <Route path="/guide/merci" element={<GuideSuccess />} />
         <Route path="/trading-tools" element={<TradingTools />} />
+        <Route path="/performance" element={<Performance />} />
         <Route path="/academy" element={<Academy />} />
-        <Route path="/market-insights" element={<ComingSoon title="Market Insights" />} />
-        <Route path="/consulting" element={<ComingSoon title="Consulting" />} />
-        <Route path="/about" element={<ComingSoon title="About" />} />
+        <Route path="/market-insights" element={<MarketInsights />} />
+        <Route path="/consulting" element={<Consulting />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/success" element={<GuideSuccess />} />
       </Routes>
       <Footer />
     </div>
