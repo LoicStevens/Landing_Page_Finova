@@ -21,8 +21,8 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 // ── DONNÉES À METTRE À JOUR MANUELLEMENT ────────────────────────────────────
 const FTMO = {
-  profit: "+0.96%",
-  maxDD: "-1.56%",
+  profit: "+2,69%",
+  maxDD: "-1,59%",
   target: "+10%",
   days: "In Progress",
   myfxbook: "https://www.myfxbook.com/members/Mecsimple/ftmo-challenge-25k/11932997",
