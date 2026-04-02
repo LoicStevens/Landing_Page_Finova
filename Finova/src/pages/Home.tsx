@@ -41,7 +41,7 @@ const SERVICES = [
 // ── Données FTMO — à mettre à jour manuellement ──────────────────────────────
 const FTMO_DATA = {
   profit: "+2,69%",
-  maxDD: "-1.9%",
+  maxDD: "-1.59%",
   target: "+10%",
   phase: "Phase 1",
   myfxbook: "https://www.myfxbook.com/members/Mecsimple/ftmo-challenge-25k/11932997",
